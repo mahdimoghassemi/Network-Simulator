@@ -38,7 +38,7 @@ def readInputFromCsv():
     return nodes
 
 
-def creatingGraph(nodes):
+def creatingInitialGraph(nodes):
     colors_map = []
     G = nx.Graph()
     for i in range(len(nodes)):
@@ -66,9 +66,15 @@ def creatingGraph(nodes):
     nx.draw(G, pos, node_color=colors_map)
     plt.show()
 
+    return pos, G, colors_map
+
+
+def simulation(pos, G, colors_map, round_number):
+    pass
 
 # main
 
-nodes = readInputFromCsv()
 
-creatingGraph(nodes)
+nodes = readInputFromCsv()
+pos, G, colors_map = creatingInitialGraph(nodes)
+round_number = int(input('Enter Round Nubmer: '))
