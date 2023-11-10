@@ -34,8 +34,41 @@ def readInputFromCsv():
     nodes = []
     for i in range(len(id)):
         nodes.append(Node(id[i], repeat[i], starter[i], x[i], y[i], edges[i]))
+
     return nodes
 
 
+def creatingGraph(nodes):
+    colors_map = []
+    G = nx.Graph()
+    for i in range(len(nodes)):
+
+        # location
+        location = []
+        location.append(int(nodes[i].x))
+        location.append(int(nodes[i].y))
+        G.add_node(nodes[i].id, pos=tuple(location))
+
+        # node color
+        if nodes[i].starter == 1:
+            colors_map.append("blue")
+        else:
+            colors_map.append("red")
+
+        # edge
+        # edges_array = (nodes[i].edges)
+        # help_array = edges_array.split(',')
+
+        # for j in range(len(help_array)):
+        #     G.add_edge(i, int(help_array[j]))
+
+    pos = nx.get_node_attributes(G, 'pos')
+    nx.draw(G, pos, node_color=colors_map)
+    plt.show()
+
+
 # main
-readInputFromCsv()
+
+nodes = readInputFromCsv()
+
+creatingGraph(nodes)
